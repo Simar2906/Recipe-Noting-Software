@@ -26,7 +26,10 @@ function duplicateIng()
     let newDiv = document.createElement('div');
     newDiv.className = "INGrow";
     newDiv.innerHTML = INGtemplate;
-    mainDiv.appendChild(newDiv);
+    if(isLastFilled() || counterING == 2)
+    {
+        mainDiv.appendChild(newDiv);
+    }
 }
 
 function removeIng(button)
@@ -53,4 +56,17 @@ function duplicateStep()
 function removeStep(button)
 {
     button.parentElement.parentElement.remove();
+}
+function isLastFilled()
+{
+    let mainDiv = document.getElementById("duplicateIngredient");
+    let n = mainDiv.childNodes.length;
+
+    if(n == 0)
+        return false;
+
+    let lastIngInput = mainDiv.getElementsByTagName("input")
+    if(lastIngInput[2*n-1].value == "" || lastIngInput[2*n-2].value == "")
+        return false;
+    return true;
 }
