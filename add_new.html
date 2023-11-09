@@ -13,21 +13,14 @@
             <label for="name">Recipe:</label>
             <input id="name" name="">
             <span>Ingredients</span>
-            <div id="duplicateIngredient">
-            </div>
+            <div id="duplicateIngredient"></div>
             <div><button type="button" onclick="duplicateIng()" class="duplicator">+</button></div>
-            <div><button type="button" onclick="removeIng()" class="duplicator">-</button></div>
+            <!-- <div><button type="button" onclick="removeIng()" class="duplicator">-</button></div> -->
 
             <span id="Step">Steps</span>
             <div id="duplicateStep">
-                <div class="STProw">
-                    <p id="stepNo.">1:</p>
-                    <!-- Improve-->
-                    <textarea id="STPinfo" name="STPinfo" placeholder="Write Here"></textarea>
-                </div>
-                <button class="duplicator">+</button>
-                <!-- Improve-->
             </div>
+            <div><button type="button" onclick="duplicateStep()" class="duplicator">+</button></div>
             <button type="submit">Submit</button>
         </form>
         <!-- think of a way to append something to id, so as to get unique ids and names

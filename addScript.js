@@ -9,17 +9,21 @@
 //     // console.log(document.getElementById("INGquantity").value);
 // }
 // )
-let counterING = 1;
-
+let counterSTEP = 1;
 duplicateIng()
+duplicateStep()
 function duplicateIng()
 {
-    let INGtemplate = `<div id = "INGrow${counterING}" class="INGrow">
-    <label for="INGname${counterING}">Ingredient Name</label>
-    <input id="INGname${counterING}" name="INGname${counterING}">
-    <label for="INGquantity${counterING}">Qty</label>
-    <input id="INGquantity${counterING}" name="INGquantity${counterING}" type="number">
-    <select name="INGunit${counterING}">
+    let mainDiv = document.getElementById("duplicateIngredient");
+    let mainDivChildren = document.getElementById("duplicateIngredient").childNodes;
+    
+    let length = mainDivChildren.length;
+    let INGtemplate = `<div id = "INGrow${length+1}" class="INGrow">
+    <label for="INGname${length+1}">Ingredient Name</label>
+    <input id="INGname${length+1}" name="INGname${length+1}">
+    <label for="INGquantity${length+1}">Qty</label>
+    <input id="INGquantity${length+1}" name="INGquantity${length+1}" type="number">
+    <select name="INGunit${length+1}">
         <option value="g" selected>g</option>
         <option value="kg">kg</option>
         <option value="ml">ml</option>
@@ -28,23 +32,37 @@ function duplicateIng()
         <option value="tsp">tsp</option>
         <option value="tbsp">tbsp</option>
     </select>
+    <button type="button" onclick="removeIng(this)" class="duplicator">-</button>
 </div>`
-
+console.log(length)
     let newDiv = document.createElement('div');
     newDiv.className = "INGrow";
     newDiv.innerHTML = INGtemplate;
-    document.getElementById("duplicateIngredient").appendChild(newDiv);
-    counterING+=1;
+    mainDiv.appendChild(newDiv);
 }
-function removeIng()
+function removeIng(button)
 {
-    if(counterING > 1)
-    {
-        counterING-=1;
-        document.getElementById("INGrow"+counterING).remove();
-    }
+    button.parentElement.remove();
+    // if(counterING > 2)
+    // {
+    //     counterING-=1;
+    //     document.getElementById("INGrow"+counterING).remove();
+    // }
 }
 
+function duplicateStep()
+{
+    let STEPtemplate = `<div>
+    <span id="stepNo.">${counterSTEP}:</span>
+    <textarea id="STPinfo${counterSTEP}" name="STPinfo${counterSTEP}" placeholder="Write Here"></textarea>
+</div>`
+
+    let newDiv = document.createElement("div");
+    newDiv.className = "STProw";
+    newDiv.innerHTML = STEPtemplate;
+    document.getElementById("duplicateStep").appendChild(newDiv);
+    counterSTEP += 1;
+}
 
 
 
