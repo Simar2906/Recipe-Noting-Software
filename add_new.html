@@ -1,12 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Add a new Recipe</h1>
-    <a href="index.html" id="back" class="Back">Back</a>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>Add a new Recipe</h1>
+        <a href="index.html" id="back" class="Back">Back</a>
+        <hr>
+        <form id="RecipeForm">
+            <label for="name">Recipe:</label>
+            <input id="name" name="">
+            <span>Ingredients</span>
+            <div id="duplicateIngredient">
+            </div>
+            <div><button type="button" onclick="duplicateIng()" class="duplicator">+</button></div>
+            <div><button type="button" onclick="removeIng()" class="duplicator">-</button></div>
+
+            <span id="Step">Steps</span>
+            <div id="duplicateStep">
+                <div class="STProw">
+                    <p id="stepNo.">1:</p>
+                    <!-- Improve-->
+                    <textarea id="STPinfo" name="STPinfo" placeholder="Write Here"></textarea>
+                </div>
+                <button class="duplicator">+</button>
+                <!-- Improve-->
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+        <!-- think of a way to append something to id, so as to get unique ids and names
+        think of some way to enumerate the step number and make it inline with the step textarea -->
+    </body>
+    <script src="addScript.js"></script>
 </html>
