@@ -1,29 +1,17 @@
-// const form = document.getElementById("RecipeForm");
-// form.addEventListener('submit', (event) =>{
-//     event.preventDefault();
-//     const fd = new FormData(form)
-//     for(item of fd)
-//     {
-//         console.log(item)
-//     }
-//     // console.log(document.getElementById("INGquantity").value);
-// }
-// )
 let counterSTEP = 1;
+let counterING = 1;
 duplicateIng()
 duplicateStep()
+
 function duplicateIng()
 {
     let mainDiv = document.getElementById("duplicateIngredient");
-    let mainDivChildren = document.getElementById("duplicateIngredient").childNodes;
-    
-    let length = mainDivChildren.length;
-    let INGtemplate = `<div id = "INGrow${length+1}" class="INGrow">
-    <label for="INGname${length+1}">Ingredient Name</label>
-    <input id="INGname${length+1}" name="INGname${length+1}">
-    <label for="INGquantity${length+1}">Qty</label>
-    <input id="INGquantity${length+1}" name="INGquantity${length+1}" type="number">
-    <select name="INGunit${length+1}">
+    let INGtemplate = `<div id = "INGrow${counterING+1}" class="INGrow">
+    <label for="INGname${counterING+1}">Ingredient Name</label>
+    <input id="INGname${counterING+1}" name="INGname${counterING+1}">
+    <label for="INGquantity${counterING+1}">Qty</label>
+    <input id="INGquantity${counterING+1}" name="INGquantity${counterING+1}" type="number">
+    <select name="INGunit${counterING+1}">
         <option value="g" selected>g</option>
         <option value="kg">kg</option>
         <option value="ml">ml</option>
@@ -32,22 +20,18 @@ function duplicateIng()
         <option value="tsp">tsp</option>
         <option value="tbsp">tbsp</option>
     </select>
-    <button type="button" onclick="removeIng(this)" class="duplicator">-</button>
+    <button type="button" onclick="removeIng(this)" class="remover">-</button>
 </div>`
-console.log(length)
+    counterING+= 1;
     let newDiv = document.createElement('div');
     newDiv.className = "INGrow";
     newDiv.innerHTML = INGtemplate;
     mainDiv.appendChild(newDiv);
 }
+
 function removeIng(button)
 {
-    button.parentElement.remove();
-    // if(counterING > 2)
-    // {
-    //     counterING-=1;
-    //     document.getElementById("INGrow"+counterING).remove();
-    // }
+    button.parentElement.parentElement.remove();
 }
 
 function duplicateStep()
