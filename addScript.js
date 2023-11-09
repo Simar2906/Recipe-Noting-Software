@@ -6,12 +6,12 @@ duplicateStep()
 function duplicateIng()
 {
     let mainDiv = document.getElementById("duplicateIngredient");
-    let INGtemplate = `<div id = "INGrow${counterING+1}" class="INGrow">
-    <label for="INGname${counterING+1}">Ingredient Name</label>
-    <input id="INGname${counterING+1}" name="INGname${counterING+1}">
-    <label for="INGquantity${counterING+1}">Qty</label>
-    <input id="INGquantity${counterING+1}" name="INGquantity${counterING+1}" type="number">
-    <select name="INGunit${counterING+1}">
+    let INGtemplate = `<div id = "INGrow${counterING}" class="INGrow">
+    <label for="INGname${counterING}">Ingredient Name</label>
+    <input id="INGname${counterING}" name="INGname${counterING}">
+    <label for="INGquantity${counterING}">Qty</label>
+    <input id="INGquantity${counterING}" name="INGquantity${counterING}" type="number">
+    <select name="INGunit${counterING}">
         <option value="g" selected>g</option>
         <option value="kg">kg</option>
         <option value="ml">ml</option>
@@ -36,84 +36,21 @@ function removeIng(button)
 
 function duplicateStep()
 {
+
+    let mainDiv = document.getElementById("duplicateStep");
     let STEPtemplate = `<div>
-    <span id="stepNo.">${counterSTEP}:</span>
     <textarea id="STPinfo${counterSTEP}" name="STPinfo${counterSTEP}" placeholder="Write Here"></textarea>
+    <button type="button" onclick="removeStep(this)" class="remover">-</button>
 </div>`
 
     let newDiv = document.createElement("div");
     newDiv.className = "STProw";
     newDiv.innerHTML = STEPtemplate;
-    document.getElementById("duplicateStep").appendChild(newDiv);
+    mainDiv.appendChild(newDiv);
     counterSTEP += 1;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function duplicateIng()
-// {
-//     console.log("pressed");
-//     let originalING = document.getElementById("duplicateIngredient");
-//     let newING = originalING.cloneNode(true);
-//     newING.id = newING.id + counterING
-//     console.log(newING)
-
-//     let children = newING.childNodes
-//     let length = children.length
-//     for(i = 0; i<length; i++)
-//     {
-        
-//         if(children[i].id == "INGrow")
-//         {
-//             console.log("asfd");
-//             let grandChild = children[i];
-//             let lengthGrand = grandChild.length;
-//             console.log(grandChild);
-//             for(j = 0; j<lengthGrand; j++)
-//             {
-                
-//                 if(grandChild[j].id == "INGname" || grandChild[j].id == "INTquantity")
-//                 {
-//                     grandChild[j].nodeValue = "";
-//                     grandChild[j].id == grandChild[j].id + counterING;
-//                 }
-//             }
-//         }
-        
-//     }
-//     // newING.firstChild("INGname").value = "";
-//     // newING.getElementById("INGquantity").value = "";
-
-//     newING.querySelector
-//     let form = document.getElementById('RecipeForm');
-
-//     form.insertBefore(newING, document.getElementById("Step"));
-
-// }
+function removeStep(button)
+{
+    button.parentElement.parentElement.remove();
+}
