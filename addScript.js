@@ -66,7 +66,7 @@ function duplicateStep()
 
 function removeStep(button)
 {
-    if(openSTEPCount > 11)
+    if(openSTEPCount > 1)
     {
         button.parentElement.remove();
         openSTEPCount -= 1;
@@ -91,13 +91,11 @@ function isLastFilledSTEP()
 {
     let mainDiv = document.getElementById("duplicateStep");
     let n = mainDiv.childNodes.length;
-    console.log(mainDiv.childNodes);
     if(n == 0)
         return false;
 
     let lastIngInput = mainDiv.getElementsByTagName("textarea")
-    console.log(lastIngInput);
-    if(lastIngInput[n-1].textContent== "")
+    if(lastIngInput[n-1].value== "")
         return false;
     return true;
 }
