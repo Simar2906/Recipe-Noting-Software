@@ -10,18 +10,20 @@
         <a href="index.html" id="back" class="Back">Back</a>
         <hr>
         <form id="RecipeForm">
-            <label for="name">Recipe:</label>
-            <input id="name" name="">
+            <label for="name">Recipe: </label>
+            <input id="name" name="name" required>
+            <label for="imgUrl">Image: </label>
+            <input id="imgUrl" name="imgUrl" type="url" onfocusout="displayImage()">
+            <img src="" id="recipeImage" width="200px"> 
             <span>Ingredients</span>
             <div id="duplicateIngredient"></div>
             <div><button type="button" onclick="duplicateIng()" class="duplicator">+</button></div>
-            <!-- <div><button type="button" onclick="removeIng()" class="duplicator">-</button></div> -->
-
             <span id="Step">Steps</span>
             <div id="duplicateStep"></div>
             <div><button type="button" onclick="duplicateStep()" class="duplicator">+</button></div>
             <button type="submit">Submit</button>
         </form>
+        
         <!-- think of a way to append something to id, so as to get unique ids and names
         think of some way to enumerate the step number and make it inline with the step textarea -->
     </body>

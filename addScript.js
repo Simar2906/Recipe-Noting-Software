@@ -11,9 +11,9 @@ function duplicateIng()
     let mainDiv = document.getElementById("duplicateIngredient");
     let INGtemplate = `<div id = "INGrow${counterING}" class="INGrow">
     <label for="INGname${counterING}">Ingredient Name</label>
-    <input id="INGname${counterING}" name="INGname${counterING}">
+    <input id="INGname${counterING}" name="INGname${counterING}" required>
     <label for="INGquantity${counterING}">Qty</label>
-    <input id="INGquantity${counterING}" name="INGquantity${counterING}" type="number">
+    <input id="INGquantity${counterING}" name="INGquantity${counterING}" type="number" required>
     <select name="INGunit${counterING}">
         <option value="g" selected>g</option>
         <option value="kg">kg</option>
@@ -73,6 +73,7 @@ function removeStep(button)
     }
     
 }
+
 function isLastFilledING()
 {
     let mainDiv = document.getElementById("duplicateIngredient");
@@ -98,4 +99,15 @@ function isLastFilledSTEP()
     if(lastIngInput[n-1].value== "")
         return false;
     return true;
+}
+
+function displayImage()
+{
+
+    document.getElementById("recipeImage").src = document.getElementById("imgUrl").value;
+}
+
+function addToJson()
+{
+    
 }
