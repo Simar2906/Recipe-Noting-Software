@@ -1,5 +1,8 @@
 let counterSTEP = 1;
+let openSTEPCount = 1;
+
 let counterING = 1;
+let openINGCount = 1;
 duplicateIng()
 duplicateStep()
 
@@ -22,42 +25,55 @@ function duplicateIng()
     </select>
     <button type="button" onclick="removeIng(this)" class="remover">-</button>
 </div>`
-    counterING+= 1;
     let newDiv = document.createElement('div');
     newDiv.className = "INGrow";
     newDiv.innerHTML = INGtemplate;
-    if(isLastFilled() || counterING == 2)
+    if(isLastFilledING() || openINGCount == 1)
     {
         mainDiv.appendChild(newDiv);
+        counterING += 1;
+        openINGCount += 1;
     }
 }
 
 function removeIng(button)
 {
-    button.parentElement.parentElement.remove();
+    if(openINGCount > 1)
+    {
+        button.parentElement.parentElement.remove();
+        openINGCount -= 1;
+    }
+    
 }
 
 function duplicateStep()
 {
 
     let mainDiv = document.getElementById("duplicateStep");
-    let STEPtemplate = `<div>
-    <textarea id="STPinfo${counterSTEP}" name="STPinfo${counterSTEP}" placeholder="Write Here"></textarea>
-    <button type="button" onclick="removeStep(this)" class="remover">-</button>
-</div>`
+    let STEPtemplate = `<textarea id="STPinfo${counterSTEP}" name="STPinfo${counterSTEP}" placeholder="Write Here"></textarea><button type="button" onclick="removeStep(this)" class="remover">-</button>`
 
     let newDiv = document.createElement("div");
     newDiv.className = "STProw";
     newDiv.innerHTML = STEPtemplate;
-    mainDiv.appendChild(newDiv);
-    counterSTEP += 1;
+    if(isLastFilledSTEP() || openSTEPCount == 1)
+    {
+        mainDiv.appendChild(newDiv);
+        counterSTEP += 1;
+        openSTEPCount += 1;
+    }
+    
 }
 
 function removeStep(button)
 {
-    button.parentElement.parentElement.remove();
+    if(openSTEPCount > 11)
+    {
+        button.parentElement.remove();
+        openSTEPCount -= 1;
+    }
+    
 }
-function isLastFilled()
+function isLastFilledING()
 {
     let mainDiv = document.getElementById("duplicateIngredient");
     let n = mainDiv.childNodes.length;
@@ -67,6 +83,21 @@ function isLastFilled()
 
     let lastIngInput = mainDiv.getElementsByTagName("input")
     if(lastIngInput[2*n-1].value == "" || lastIngInput[2*n-2].value == "")
+        return false;
+    return true;
+}
+
+function isLastFilledSTEP()
+{
+    let mainDiv = document.getElementById("duplicateStep");
+    let n = mainDiv.childNodes.length;
+    console.log(mainDiv.childNodes);
+    if(n == 0)
+        return false;
+
+    let lastIngInput = mainDiv.getElementsByTagName("textarea")
+    console.log(lastIngInput);
+    if(lastIngInput[n-1].textContent== "")
         return false;
     return true;
 }
