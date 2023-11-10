@@ -9,7 +9,7 @@
         <h1>Add a new Recipe</h1>
         <a href="index.html" id="back" class="Back">Back</a>
         <hr>
-        <form id="RecipeForm">
+        <form id="RecipeForm" onsubmit="return addToJsonOnSubmit(event)">
             <label for="name">Recipe: </label>
             <input id="name" name="name" required>
             <label for="imgUrl">Image: </label>
@@ -23,9 +23,6 @@
             <div><button type="button" onclick="duplicateStep()" class="duplicator">+</button></div>
             <button type="submit">Submit</button>
         </form>
-        
-        <!-- think of a way to append something to id, so as to get unique ids and names
-        think of some way to enumerate the step number and make it inline with the step textarea -->
     </body>
     <script src="addScript.js"></script>
 </html>
