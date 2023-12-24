@@ -115,12 +115,11 @@ function addToJsonOnSubmit(event) {
     let ingredientUnitHTML = document.getElementsByClassName("INGunits");
     let ingredientUnits = Array.from(ingredientUnitHTML);
 
-    for(i = 0;i<ingredientNames.length; i++)
-    {
+    for (i = 0; i < ingredientNames.length; i++) {
         let f = {
-            "Ingredient_Name" : ingredientNames[i].value,
-            "Ingredient_Quant" : ingredientQuants[i].value,
-            "Ingredient_Unit" : ingredientUnits[i].value
+            "Ingredient_Name": ingredientNames[i].value,
+            "Ingredient_Quant": ingredientQuants[i].value,
+            "Ingredient_Unit": ingredientUnits[i].value
         };
         jsonFormat["Ingredients"].push(f);
     }
@@ -128,13 +127,11 @@ function addToJsonOnSubmit(event) {
     let stepsHTML = document.getElementsByClassName("steps");
     let stepsFinal = Array.from(stepsHTML);
 
-    for(i = 0;i<stepsFinal.length; i++)
-    {
+    for (i = 0; i < stepsFinal.length; i++) {
         // console.log(stepsFinal);
         jsonFormat["Steps"].push(stepsFinal[i].value);
     }
 
     console.log(jsonFormat);
-    
     return true;
 }
