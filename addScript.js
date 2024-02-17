@@ -106,6 +106,11 @@ function addToJsonOnSubmit(event) {
         "Ingredients": [],
         "Steps": []
     };
+    if(localStorage.getItem(jsonFormat.Recipe_Name))
+    {
+        alert('Recipe Name already exists');
+        return;
+    }
     let ingredientNamesHTML = document.getElementsByClassName("INGnames");
     let ingredientNames = Array.from(ingredientNamesHTML);
 
@@ -131,7 +136,9 @@ function addToJsonOnSubmit(event) {
         // console.log(stepsFinal);
         jsonFormat["Steps"].push(stepsFinal[i].value);
     }
-
+    localStorage.setItem(jsonFormat.Recipe_Name, JSON.stringify(jsonFormat));
+    // let newa = localStorage.getItem(JSON.parse(jsonFormat.Recipe_Name));
     console.log(jsonFormat);
+    // console.log(newa);
     return true;
 }
