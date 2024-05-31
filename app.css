@@ -1,0 +1,7 @@
+.recipeCard{
+    border: 1px solid black;
+    max-width: 200px;
+}
+.recipeCardImg{
+    max-width: 100%;
+}
