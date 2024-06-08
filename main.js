@@ -1,3 +1,4 @@
+var fetchedRecipeDetails = null;
 
 var checkCreations = function(){
     // alert('Creating local data structuures');
@@ -35,12 +36,13 @@ var fetchRecipes = function(){
     var message = '';
     var indices = JSON.parse(localStorage.getItem('Indices'));
     var recipeDetails = JSON.parse(localStorage.getItem('Recipes'));
+    fetchedRecipeDetails = recipeDetails;
     console.log(recipeDetails);
     var recipes = Object.keys(indices);
     if(recipes.length != 0){
         recipes.forEach(recipe => {
             var recipeName = indices[recipe];
-            message += `<div class="recipeCard" onclick="openModal()">
+            message += `<div class="recipeCard" onclick="openModal(this.children[0])">
                         
                         <div class="recipeCardName">${recipeName}</div>
                         <img class="recipeCardImg" src="${recipeDetails[recipeName].Image_URL}" alt="Image of ${recipeDetails[recipeName].Recipe_Name}"></img>
@@ -48,7 +50,7 @@ var fetchRecipes = function(){
                         </div>`;
                         // <button>&#9998;</button>
                         // <button>&#88;</button>
-            console.log(message);
+            // console.log(message);
         });
     }
     else{
@@ -57,9 +59,29 @@ var fetchRecipes = function(){
 
     document.getElementById('RecipeContainer').innerHTML = message;
 }
-var currentModalRecipe = null;
-var openModal = function(){
+
+var openModal = function(clickedRecipe){
     console.log('clicked');
     document.getElementById('recipeModal').style.display = "flex";
+    var data = fetchedRecipeDetails[clickedRecipe.innerHTML];
+    console.log(data);
+    var modalContent = document.getElementById('currentModalRecipe');
+    modalContent.innerHTML = `
+    <div>
+        <div>${data.Recipe_Name}</div>
+        <div>Steps to prepare</div>
+    </div>
+    <div>
+        <div class="topRight">
+            <div>Ingredients</div>
+            <button onclick = closeModal()>X</button>
+        </div>
+            <img class="modalImage"src="${data.Image_URL}">
+    </div>
+    `
+    
+}
+var closeModal = function(){
+    document.getElementById('recipeModal').style.display = "none";
 }
 fetchRecipes();
