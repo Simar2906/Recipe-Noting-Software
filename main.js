@@ -69,17 +69,29 @@ var openModal = function(clickedRecipe){
     modalContent.innerHTML = `
     <div>
         <div>${data.Recipe_Name}</div>
-        <div>Steps to prepare</div>
+        <div id="stepsToPrepare">Steps to Prepare</div>
     </div>
     <div>
         <div class="topRight">
             <div>Ingredients</div>
             <button onclick = closeModal()>X</button>
         </div>
-            <img class="modalImage"src="${data.Image_URL}">
+        <div id="ingredientDisplay"></div>
+        <img class="modalImage"src="${data.Image_URL}">
     </div>
     `
-    
+    var i = 1;
+    var stepsElement = document.getElementById("stepsToPrepare");
+    data.Steps.forEach((step)=>{
+        stepsElement.innerHTML += `<div>${i}. ${step}</div>`
+        i++;
+    });
+
+    var ingredientDisplay =  document.getElementById("ingredientDisplay");
+    data.Ingredients.forEach((ingr)=>{
+        ingredientDisplay.innerHTML += `<div>&rarr;${ingr.Ingredient_Name}: ${ingr.Ingredient_Quant} ${ingr.Ingredient_Unit}</div>`
+    });
+
 }
 var closeModal = function(){
     document.getElementById('recipeModal').style.display = "none";
