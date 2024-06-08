@@ -40,7 +40,7 @@ var fetchRecipes = function(){
     if(recipes.length != 0){
         recipes.forEach(recipe => {
             var recipeName = indices[recipe];
-            message += `<div class="recipeCard" click>
+            message += `<div class="recipeCard" onclick="openModal()">
                         
                         <div class="recipeCardName">${recipeName}</div>
                         <img class="recipeCardImg" src="${recipeDetails[recipeName].Image_URL}" alt="Image of ${recipeDetails[recipeName].Recipe_Name}"></img>
@@ -57,5 +57,9 @@ var fetchRecipes = function(){
 
     document.getElementById('RecipeContainer').innerHTML = message;
 }
-
+var currentModalRecipe = null;
+var openModal = function(){
+    console.log('clicked');
+    document.getElementById('recipeModal').style.display = "flex";
+}
 fetchRecipes();
