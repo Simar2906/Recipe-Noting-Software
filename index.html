@@ -9,13 +9,13 @@
 
     <body>
         <h1>Simar's Recipe Codex</h1>
-        <a href="add_new.html" id="addNew" class="topButton">Add New Recipe</a>
-        <a href="" id="editButton" class="topButton">Edit/Remove Recipe</a>
+        <button onclick="window.location.href='add_new.html'" id="addNew" class="topButton">Add New Recipe</button>
+        <button onclick="enableOption()" id="editRemoveButton" class="topButton">Edit/Remove Recipe</button>
         <h2>Recipes</h2>
         <hr>
         <div id="RecipeContainer"></div>
-        <div class="recipeModal" id="recipeModal">
-            <div id="currentModalRecipe" class="currentModalRecipe"></div>
+        <div class="recipeModal" id="recipeModal" onclick="closeModal()">
+            <div id="currentModalRecipe" class="currentModalRecipe" onclick="stopPropagation(event)"></div>
         </div>
         <script src="main.js"></script>
     </body>

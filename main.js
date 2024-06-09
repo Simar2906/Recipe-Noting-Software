@@ -42,14 +42,16 @@ var fetchRecipes = function(){
     if(recipes.length != 0){
         recipes.forEach(recipe => {
             var recipeName = indices[recipe];
-            message += `<div class="recipeCard" onclick="openModal(this.children[0])">
-                        
-                        <div class="recipeCardName">${recipeName}</div>
-                        <img class="recipeCardImg" src="${recipeDetails[recipeName].Image_URL}" alt="Image of ${recipeDetails[recipeName].Recipe_Name}"></img>
-
+            message += `<div>
+                        <div class="recipeCard" onclick="openModal(this.children[0])">
+                            <div class="recipeCardName">${recipeName}</div>
+                            <img class="recipeCardImg" src="${recipeDetails[recipeName].Image_URL}" alt="Image of ${recipeDetails[recipeName].Recipe_Name}"></img>
+                        </div>
+                        <div>
+                            <button>&#9998;</button>
+                            <button onclick="removeRecipe(this.parentNode.parentNode.children[0].children[0])">&#88;</button>
+                        </div>
                         </div>`;
-                        // <button>&#9998;</button>
-                        // <button>&#88;</button>
             // console.log(message);
         });
     }
@@ -59,10 +61,19 @@ var fetchRecipes = function(){
 
     document.getElementById('RecipeContainer').innerHTML = message;
 }
+var removeRecipe = function(buttonClicked){
+    var recipeName = buttonClicked.innerHTML;
+    console.log(buttonClicked.innerHTML);
+    console.log(fetchedRecipeDetails);
+    delete fetchedRecipeDetails[recipeName];
+    var keys = localStorage.getItem('Indices');
+    console.log(keys);
 
+}
 var openModal = function(clickedRecipe){
     console.log('clicked');
     document.getElementById('recipeModal').style.display = "flex";
+    document.body.classList.add('no-scroll');
     var data = fetchedRecipeDetails[clickedRecipe.innerHTML];
     console.log(data);
     var modalContent = document.getElementById('currentModalRecipe');
@@ -95,5 +106,14 @@ var openModal = function(clickedRecipe){
 }
 var closeModal = function(){
     document.getElementById('recipeModal').style.display = "none";
+    document.body.classList.remove('no-scroll');
+}
+
+var stopPropagation = function(event){
+    event.stopPropagation();
+}
+
+var enableOption = function(){
+    console.log('Edit Pressed!');
 }
 fetchRecipes();
