@@ -33,3 +33,6 @@
 .no-scroll {
     overflow: hidden;
 }
+.hiddenButton{
+    display: none;
+}

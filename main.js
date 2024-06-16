@@ -1,5 +1,5 @@
 var fetchedRecipeDetails = null;
-
+var editToggle = 0;
 var checkCreations = function(){
     // alert('Creating local data structuures');
     if(localStorage.getItem('Recipes') == null){
@@ -48,8 +48,8 @@ var fetchRecipes = function(){
                             <img class="recipeCardImg" src="${recipeDetails[recipeName].Image_URL}" alt="Image of ${recipeDetails[recipeName].Recipe_Name}"></img>
                         </div>
                         <div>
-                            <button>&#9998;</button>
-                            <button onclick="removeRecipe(this.parentNode.parentNode.children[0].children[0])">&#88;</button>
+                            <button class="hiddenButton">&#9998;</button>
+                            <button class="hiddenButton" onclick="removeRecipe(this.parentNode.parentNode.children[0].children[0])">&#88;</button>
                         </div>
                         </div>`;
             // console.log(message);
@@ -113,7 +113,23 @@ var stopPropagation = function(event){
     event.stopPropagation();
 }
 
-var enableOption = function(){
+var enableOptionToggle = function(){
     console.log('Edit Pressed!');
+    var eles = document.getElementsByClassName("hiddenButton");
+    var button = document.getElementsByClassName("editToggle");
+    if(editToggle == 0){
+        for(var i = 0; i<eles.length; i++){
+            eles[i].style.display = "inline-block";
+        }
+        button[0].style["filter"] = "brightness(85%)";
+        editToggle = 1;
+    }
+    else{
+        for(var i = 0; i<eles.length; i++){
+            eles[i].style.display = "none";
+        }
+        button[0].style["filter"] = "brightness(100%)";
+        editToggle = 0;
+    }
 }
 fetchRecipes();
