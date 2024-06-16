@@ -1,4 +1,5 @@
 var fetchedRecipeDetails = null;
+var fetchedIndices = null;
 var editToggle = 0;
 var checkCreations = function(){
     // alert('Creating local data structuures');
@@ -37,6 +38,7 @@ var fetchRecipes = function(){
     var indices = JSON.parse(localStorage.getItem('Indices'));
     var recipeDetails = JSON.parse(localStorage.getItem('Recipes'));
     fetchedRecipeDetails = recipeDetails;
+    fetchedIndices = indices;
     console.log(recipeDetails);
     var recipes = Object.keys(indices);
     if(recipes.length != 0){
@@ -48,7 +50,7 @@ var fetchRecipes = function(){
                             <img class="recipeCardImg" src="${recipeDetails[recipeName].Image_URL}" alt="Image of ${recipeDetails[recipeName].Recipe_Name}"></img>
                         </div>
                         <div>
-                            <button class="hiddenButton">&#9998;</button>
+                            <button class="hiddenButton" onclick="editRecipe(this.parentNode.parentNode)">&#9998;</button>
                             <button class="hiddenButton" onclick="removeRecipe(this.parentNode.parentNode)">&#88;</button>
                         </div>
                         </div>`;
@@ -88,6 +90,18 @@ var removeRecipe = function(buttonClicked){
     console.log("Deleted Successfully"); 
 
 }
+
+var editRecipe = function(clickedRecipe){
+    var id = null;
+    var recipeName = clickedRecipe.children[0].children[0].innerHTML;
+    for(var key in fetchedIndices){
+        if(fetchedIndices[key] == recipeName){
+            id = key;
+        }
+    }
+    window.location.href="add_new.html?id=" + id;
+}
+
 var openModal = function(clickedRecipe){
     console.log('clicked');
     document.getElementById('recipeModal').style.display = "flex";
@@ -150,4 +164,5 @@ var enableOptionToggle = function(){
         editToggle = 0;
     }
 }
+
 fetchRecipes();
