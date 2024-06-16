@@ -49,7 +49,7 @@ var fetchRecipes = function(){
                         </div>
                         <div>
                             <button class="hiddenButton">&#9998;</button>
-                            <button class="hiddenButton" onclick="removeRecipe(this.parentNode.parentNode.children[0].children[0])">&#88;</button>
+                            <button class="hiddenButton" onclick="removeRecipe(this.parentNode.parentNode)">&#88;</button>
                         </div>
                         </div>`;
             // console.log(message);
@@ -62,12 +62,30 @@ var fetchRecipes = function(){
     document.getElementById('RecipeContainer').innerHTML = message;
 }
 var removeRecipe = function(buttonClicked){
-    var recipeName = buttonClicked.innerHTML;
-    console.log(buttonClicked.innerHTML);
-    console.log(fetchedRecipeDetails);
+    var recipeName = buttonClicked.children[0].children[0].innerHTML;
+    if(!confirm("Are you sure you want to delete the recipe for: "+recipeName)){
+        return;
+    }
+    
     delete fetchedRecipeDetails[recipeName];
-    var keys = localStorage.getItem('Indices');
-    console.log(keys);
+
+    // remove from dom
+    buttonClicked.remove();
+
+    //remove from local storage
+    var keys = JSON.parse(localStorage.getItem('Indices'));
+    var recipes = JSON.parse(localStorage.getItem('Recipes'));
+
+    for(var key in keys){
+        if(keys[key] == recipeName){
+            delete keys[key];
+        }
+    }
+
+    delete recipes[recipeName];
+    localStorage.setItem('Recipes', JSON.stringify(recipes));
+    localStorage.setItem('Indices', JSON.stringify(keys));
+    console.log("Deleted Successfully"); 
 
 }
 var openModal = function(clickedRecipe){
