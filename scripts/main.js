@@ -45,14 +45,14 @@ var fetchRecipes = function(){
     if(recipes.length != 0){
         recipes.forEach(recipe => {
             var recipeName = indices[recipe];
-            message += `<div>
+            message += `<div class = "recipeBlock">
                         <div class="recipeCard" onclick="openModal(this.children[0])">
                             <div class="recipeCardName">${recipeName}</div>
                             <img class="recipeCardImg" src="${recipeDetails[recipeName].Image_URL}" alt="Image of ${recipeDetails[recipeName].Recipe_Name}"></img>
                         </div>
-                        <div>
-                            <button class="hiddenButton" onclick="editRecipe(this.parentNode.parentNode)">&#9998;</button>
-                            <button class="hiddenButton" onclick="removeRecipe(this.parentNode.parentNode)">&#88;</button>
+                        <div class = "buttonGroup">
+                            <button class="hiddenButton" style = "width: 1.5em;Height:1.5em;padding:0" onclick="editRecipe(this.parentNode.parentNode)">&#9998;</button>
+                            <button class="hiddenButton" style = "width: 1.5em;Height:1.5em;padding:0" onclick="removeRecipe(this.parentNode.parentNode)">&#88;</button>
                         </div>
                         </div>`;
             // console.log(message);

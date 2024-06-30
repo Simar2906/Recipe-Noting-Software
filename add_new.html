@@ -4,26 +4,53 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
+        <link rel="stylesheet" href="styles/app.css">
     </head>
     <body>
-        <h1 id="PageTitle">Add a new Recipe</h1>
-        <a href="index.html" id="back" class="Back">Back</a>
-        <hr>
-        <form id="RecipeForm" onsubmit="return addToJsonOnSubmit(event)">
-            <label for="name">Recipe: </label>
-            <input id="name" name="name" required>
-            <label for="imgUrl">Image: </label>
-            <input id="imgUrl" name="imgUrl" type="url" onfocusout="displayImage()">
-            <img src="" id="recipeImage" width="200px"> 
-            <span>Ingredients</span>
-            <div id="duplicateIngredient"></div>
-            <div><button type="button" onclick="duplicateIng()" class="duplicator">+</button></div>
-            <span id="Step">Steps</span>
-            <div id="duplicateStep"></div>
-            <div><button type="button" onclick="duplicateStep()" class="duplicator">+</button></div>
-            <button type="submit">Submit</button>
-        </form>
+        <div class="topBanner"> 
+            <span class="websiteTitle" id="PageTitle">Add a new Recipe</span>
+            <span class="spanButton"onclick="window.location.href = 'index.html';" id="back" class="Back">Back</span>
+        </div>
+        <div class="recipeFormContainer">
+            <form id="RecipeForm" onsubmit="return addToJsonOnSubmit(event)">
+                <div class="recipeForm" >
+                    <div class="formFields">
+                        <div class="formChunk">
+                            <div class="formGroup">
+                                <label class="formLabel" for="name">Recipe Name</label>
+                                <input class="formInput" id="name" name="name" required>
+                            </div>
+                            <div class="formGroup">
+                                <label for="imgUrl">Image URL</label>
+                                <input id="imgUrl" name="imgUrl" type="url" onfocusout="displayImage()">    
+                            </div>
+                        </div>
+                        <div class="formChunk">
+                            <div>
+                                <span class="formHeading">Ingredients</span>
+                            </div>
+                            <div class="formGroup">
+                                <div id="duplicateIngredient"></div>
+                                <div><span type="button" onclick="duplicateIng()" class="duplicator spanButton">+</span></div>     
+                            </div>
+                        </div>
+                        <div class="formChunk">
+                            <div>
+                                <span class="formHeading" id="Step">Steps</span>
+                            </div>
+                            <div>
+                                <div id="duplicateStep"></div>
+                                <div><span type="button" onclick="duplicateStep()" class="duplicator spanButton">+</span></div>    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <img src="" id="recipeImage" max-width="200px"> 
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        
     </body>
-    <script src="main.js"></script>
-    <script src="addScript.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/addScript.js"></script>
 </html>

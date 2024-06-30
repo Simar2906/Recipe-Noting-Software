@@ -4,19 +4,21 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
-        <link rel="stylesheet" href="app.css">
+        <link rel="stylesheet" href="styles/app.css">
     </head>
 
     <body>
-        <h1>Simar's Recipe Codex</h1>
-        <button onclick="window.location.href='add_new.html?id=-1'" id="addNew" class="topButton">Add New Recipe</button>
-        <button onclick="enableOptionToggle()" id="editRemoveButton" class="topButton editToggle">Edit/Remove Recipe</button>
-        <h2>Recipes</h2>
-        <hr>
-        <div id="RecipeContainer"></div>
+        <div class="topBanner">
+            <span class="websiteTitle">Simar's Recipe Codex</span>
+            <div>
+                <span onclick="window.location.href='add_new.html?id=-1'" id="addNew" class="topButton spanButton">Add New Recipe</span>
+                <span onclick="enableOptionToggle()" id="editRemoveButton" class="topButton editToggle spanButton">Edit/Remove Recipe</span>
+            </div>
+        </div>
+        <div id="RecipeContainer" class="recipeContainer"></div>
         <div class="recipeModal" id="recipeModal" onclick="closeModal()">
             <div id="currentModalRecipe" class="currentModalRecipe" onclick="stopPropagation(event)"></div>
         </div>
-        <script src="main.js"></script>
+        <script src="scripts/main.js"></script>
     </body>
 </html>

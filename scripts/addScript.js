@@ -36,10 +36,11 @@ function setHeading(currentRecipe){
 function duplicateIng(ingredient) {
     let mainDiv = document.getElementById("duplicateIngredient");
     let INGtemplate = `<div id = "INGrow${counterING}" class="INGrow">
-    <label for="INGname${counterING}">Ingredient Name</label>
+    <label for="INGname${counterING}">Name</label>
     <input class="INGnames" id="INGname${counterING}" name="INGname${counterING}" required>
     <label for="INGquantity${counterING}">Qty</label>
     <input class="INGquantities" id="INGquantity${counterING}" name="INGquantity${counterING}" type="number" required>
+    <label for="INGunit${counterING}">Unit</label>
     <select class="INGunits" id="INGunit${counterING}" name="INGunit${counterING}">
         <option value="g" selected>g</option>
         <option value="kg">kg</option>
@@ -48,8 +49,9 @@ function duplicateIng(ingredient) {
         <option value="ltr">ltr</option>
         <option value="tsp">tsp</option>
         <option value="tbsp">tbsp</option>
+        <option value="pcs">pcs</option>
     </select>
-    <button type="button" onclick="removeIng(this)" class="remover">-</button>
+    <span type="button" onclick="removeIng(this)" class="remover spanButton">-</span>
 </div>`
     let newDiv = document.createElement('div');
     newDiv.className = "INGrow";
@@ -80,7 +82,7 @@ function removeIng(button) {
 function duplicateStep(step) {
 
     let mainDiv = document.getElementById("duplicateStep");
-    let STEPtemplate = `<textarea class="steps" id="STPinfo${counterSTEP}" name="STPinfo${counterSTEP}" placeholder="Write Here" required></textarea><button type="button" onclick="removeStep(this)" class="remover">-</button>`
+    let STEPtemplate = `<textarea class="steps" id="STPinfo${counterSTEP}" name="STPinfo${counterSTEP}" placeholder="Write Here" required></textarea><span type="button" onclick="removeStep(this)" class="remover spanButton">-</span>`
 
     let newDiv = document.createElement("div");
     newDiv.className = "STProw";
