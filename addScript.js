@@ -1,19 +1,46 @@
 let counterSTEP = 1;
 let openSTEPCount = 1;
-
+var currentRecipe = null;
+var currentRecipe = ReadParam();
 let counterING = 1;
 let openINGCount = 1;
-duplicateIng()
-duplicateStep()
+if(currentRecipe){
+    setHeading(currentRecipe);
+    document.getElementById('name').value = currentRecipe.Recipe_Name;
+    document.getElementById('imgUrl').value = currentRecipe.Image_URL;
 
-function duplicateIng() {
+    for(var i = 0; i<currentRecipe.Ingredients.length; i++){
+        duplicateIng(currentRecipe.Ingredients[i]);
+    }
+    for(var i = 0; i<currentRecipe.Steps.length; i++){
+        duplicateStep(currentRecipe.Steps[i]);
+    }
+}
+else{
+    duplicateIng();
+    duplicateStep();
+}
+
+
+function ReadParam(){
+    var recipeId = location.href.split('?')[1].slice(3);
+    var indices = JSON.parse(localStorage.getItem('Indices'))[recipeId];
+    return JSON.parse(localStorage.getItem('Recipes'))[indices];
+}
+
+function setHeading(currentRecipe){
+    var title = document.getElementById('PageTitle');
+    title.innerHTML = 'Edit Recipe of: '+ currentRecipe.Recipe_Name;
+}
+
+function duplicateIng(ingredient) {
     let mainDiv = document.getElementById("duplicateIngredient");
     let INGtemplate = `<div id = "INGrow${counterING}" class="INGrow">
     <label for="INGname${counterING}">Ingredient Name</label>
     <input class="INGnames" id="INGname${counterING}" name="INGname${counterING}" required>
     <label for="INGquantity${counterING}">Qty</label>
     <input class="INGquantities" id="INGquantity${counterING}" name="INGquantity${counterING}" type="number" required>
-    <select class="INGunits"name="INGunit${counterING}">
+    <select class="INGunits" id="INGunit${counterING}" name="INGunit${counterING}">
         <option value="g" selected>g</option>
         <option value="kg">kg</option>
         <option value="ml">ml</option>
@@ -32,6 +59,14 @@ function duplicateIng() {
         counterING += 1;
         openINGCount += 1;
     }
+    if(ingredient){
+        var ingName = document.getElementById('INGname'+(counterING-1).toString());
+        var ingQuantity = document.getElementById('INGquantity'+(counterING-1).toString());
+        var ingUOM = document.getElementById('INGunit'+(counterING-1).toString());
+        ingUOM.value = ingredient.Ingredient_Unit;
+        ingQuantity.value = ingredient.Ingredient_Quant;
+        ingName.value = ingredient.Ingredient_Name;
+    }
 }
 
 function removeIng(button) {
@@ -42,7 +77,7 @@ function removeIng(button) {
 
 }
 
-function duplicateStep() {
+function duplicateStep(step) {
 
     let mainDiv = document.getElementById("duplicateStep");
     let STEPtemplate = `<textarea class="steps" id="STPinfo${counterSTEP}" name="STPinfo${counterSTEP}" placeholder="Write Here" required></textarea><button type="button" onclick="removeStep(this)" class="remover">-</button>`
@@ -55,7 +90,10 @@ function duplicateStep() {
         counterSTEP += 1;
         openSTEPCount += 1;
     }
-
+    if(step){
+        var stepInfo = document.getElementById('STPinfo'+(counterSTEP-1).toString());
+        stepInfo.value = step;
+    }
 }
 
 function removeStep(button) {
@@ -135,7 +173,7 @@ function addToJsonOnSubmit(event) {
         // console.log(stepsFinal);
         jsonFormat["Steps"].push(stepsFinal[i].value);
     }
-    updateData(jsonFormat);
+    updateData(jsonFormat, currentRecipe);
 
     window.location.href = 'index.html';
     return true;

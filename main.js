@@ -11,22 +11,23 @@ var checkCreations = function(){
     }
 }
 
-var updateData = function(jsonData){
+var updateData = function(jsonData, update){
     checkCreations();
     // debugger
     let indices = JSON.parse(localStorage.getItem('Indices'));
     let indkeys = Object.keys(indices);
-    let newIndex = '-1';
-    if(indkeys.length != 0){
-        newIndex = indkeys.slice(-1)[0];
+    if(update == null || update == undefined){
+        let newIndex = '-1';
+        if(indkeys.length != 0){
+            newIndex = indkeys.slice(-1)[0];
+            newIndex = (parseInt(newIndex)+1).toString();
+        }
+        let newObj = {};
+        newObj[newIndex] = jsonData.Recipe_Name;
+        indices = { ...newObj, ...indices};
+        localStorage.setItem('Indices', JSON.stringify(indices));
     }
-    newIndex = (parseInt(newIndex)+1).toString();
-
-    let newObj = {};
-    newObj[newIndex] = jsonData.Recipe_Name;
-    indices = { ...newObj, ...indices};
-    localStorage.setItem('Indices', JSON.stringify(indices));
-
+    
     let recipes = JSON.parse(localStorage.getItem('Recipes'));
     recipes[jsonData.Recipe_Name] = jsonData;
     // recipes.push(jsonData);
