@@ -46,9 +46,9 @@ var fetchRecipes = function(){
         recipes.forEach(recipe => {
             var recipeName = indices[recipe];
             message += `<div class = "recipeBlock">
-                        <div class="recipeCard" onclick="openModal(this.children[0])">
-                            <div class="recipeCardName">${recipeName}</div>
+                        <div class="recipeCard" onclick="openModal(this.children[1])">
                             <img class="recipeCardImg" src="${recipeDetails[recipeName].Image_URL}" alt="Image of ${recipeDetails[recipeName].Recipe_Name}"></img>
+                            <div class="recipeCardName">${recipeName}</div>
                         </div>
                         <div class = "buttonGroup">
                             <button class="hiddenButton" style = "width: 1.5em;Height:1.5em;padding:0" onclick="editRecipe(this.parentNode.parentNode)">&#9998;</button>
@@ -65,7 +65,7 @@ var fetchRecipes = function(){
     document.getElementById('RecipeContainer').innerHTML = message;
 }
 var removeRecipe = function(buttonClicked){
-    var recipeName = buttonClicked.children[0].children[0].innerHTML;
+    var recipeName = buttonClicked.children[0].children[1].innerHTML;
     if(!confirm("Are you sure you want to delete the recipe for: "+recipeName)){
         return;
     }
@@ -94,7 +94,7 @@ var removeRecipe = function(buttonClicked){
 
 var editRecipe = function(clickedRecipe){
     var id = null;
-    var recipeName = clickedRecipe.children[0].children[0].innerHTML;
+    var recipeName = clickedRecipe.children[0].children[1].innerHTML;
     for(var key in fetchedIndices){
         if(fetchedIndices[key] == recipeName){
             id = key;
