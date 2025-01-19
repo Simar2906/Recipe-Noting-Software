@@ -53,31 +53,48 @@ body{
 .recipeCard{
     /* border: 1px solid black; */
     background-color: #ffffff;
-    max-width: 200px;
+    width: 100%;
+    /* max-height: 250px; */
+    min-height: 254px;
+    /* max-width: 200px; */
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    overflow: hidden;
+    /* overflow: hidden; */
     border-radius: 8px;
     box-shadow: 0px 2px 5px 2px rgba(0, 0, 0, 0.097);
     transition: box-shadow 0.25s;
-    padding: 10px 10px;
+    padding: 20px 20px;
 }
 .recipeCard:hover{
     box-shadow: 0px 2px 5px 2px rgba(0, 0, 0, 0.359);
+}
+.recipeCard:hover .recipeCardImg{
+    margin-top: 0px;
+    margin-bottom: 18px;
+    box-shadow: none;
 }
 .recipeCardName{
     font-size: 1.5em;
     padding-block: 0.25em;
     /* border-bottom: 1px solid black; */
     /* background-color: #ffffff; */
+    box-shadow: inset 0px 1px rgba(0, 0, 0, 0.359);
     display: flex;
     justify-content:space-around;
 }
 
 .recipeCardImg{
-    max-height: 200px;
-    max-width: 200px;
+    /* padding: 10px 10px; */
+    border-radius: 8px;
+    margin-top: -50px;
+    margin-bottom: 50px;
+    box-shadow: 0px 30px 20px -25px rgba(0, 0, 0, 0.333);
+    object-fit: cover;
+    height: 200px;
+    width: 100%;
+    transition: all 0.5s;
+    /* position: relative; */
 }
 .recipeModal{
     display: none;
@@ -129,11 +146,14 @@ body{
     padding-bottom: 0.25em;
 }
 .recipeContainer{
-    display: flex;
-    justify-content:flex-start;
-    margin-top: 6.5em;
-    flex-wrap: wrap;
-    margin-inline: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 1300px;
+    margin-top: 200px;
+    margin-inline: auto;
+    gap: 30px 40px;
+    /* margin-top: 6.5em; */
+    /* gap: 20px; */
 }
 .recipeFormContainer{
     margin-top: 6.5em;
